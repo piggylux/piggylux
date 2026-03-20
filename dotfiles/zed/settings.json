@@ -1,0 +1,97 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+  "buffer_line_height": "standard",
+  "edit_predictions": {
+    "provider": "none",
+  },
+  "word_diff_enabled": true,
+  "project_panel": {
+    "dock": "left",
+    "git_status": true,
+  },
+  "cursor_blink": true,
+  "cursor_shape": "bar",
+  "git_panel": {
+    "status_style": "label_color",
+    "tree_view": false,
+    "collapse_untracked_diff": false,
+    "dock": "left",
+  },
+  "agent": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-5",
+    },
+  },
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "includeLanguages": {
+          "html": "html",
+          "typescript": "html",
+          "angular": "html",
+        },
+        "classAttributes": ["class", "className", "ngClass", "[class]"],
+        "experimental": {
+          "classRegex": [
+            "class:\\s*[\"'`]([^\"'`]*)[\"'`]",
+            "class=\"([^\"]*)",
+            "class='([^']*)",
+            "\\[class\\]=\"([^\"]*)",
+            [
+              "template:\\s*`([\\s\\S]*?)`",
+              "class\\s*=\\s*[\"']([^\"']*)[\"']",
+            ],
+          ],
+        },
+      },
+    },
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": { "name": "ruff" },
+        },
+      ],
+    },
+    "HTML": {
+      "language_servers": ["tailwindcss-language-server", "Angular", "..."],
+    },
+    "TypeScript": {
+      "language_servers": ["tailwindcss-language-server", "Angular", "..."],
+    },
+    "Angular": {
+      "language_servers": ["tailwindcss-language-server", "HTML", "..."],
+    },
+  },
+  "theme": "Rosé Pine Dawn",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "buffer_font_size": 14,
+  "tab_size": 2,
+  "base_keymap": "JetBrains",
+  "buffer_font_family": "Cascadia Code",
+  "terminal": {
+    "font_family": "MesloLGS NF",
+    "font_fallbacks": ["MesloLGS NF"],
+    "line_height": "standard",
+    "font_size": 13,
+  },
+}
