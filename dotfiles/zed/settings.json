@@ -7,61 +7,95 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "agent_servers": {
-    "codex-acp": {
-      "type": "registry"
-    }
+  "title_bar": {
+    "show_menus": false,
   },
+  "diff_view_style": "split",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Latte",
+  },
+  "sticky_scroll": {
+    "enabled": false,
+  },
+  "search": {
+    "center_on_match": true,
+    "button": false,
+  },
+  "inline_code_actions": false,
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+  },
+  "agent_servers": {},
   "buffer_line_height": "standard",
   "edit_predictions": {
     "provider": "none",
   },
   "word_diff_enabled": true,
   "project_panel": {
-    "dock": "left",
+    "dock": "right",
+    "sticky_scroll": false,
     "git_status": true,
   },
   "cursor_blink": true,
   "cursor_shape": "bar",
   "git_panel": {
+    "folder_icons": true,
+    "file_icons": true,
+    "button": true,
     "status_style": "label_color",
     "tree_view": false,
     "collapse_untracked_diff": false,
-    "dock": "left",
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+    "button": false,
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "right",
   },
   "agent": {
+    "button": false,
+    "sidebar_side": "right",
+    "dock": null,
     "default_model": {
       "provider": "openai",
       "model": "gpt-5",
     },
   },
+  "file_types": {
+    "HTML": ["html"],
+  },
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
         "includeLanguages": {
-          "html": "html",
-          "typescript": "html",
           "angular": "html",
         },
         "classAttributes": ["class", "className", "ngClass", "[class]"],
         "experimental": {
           "classRegex": [
-            "class:\\s*[\"'`]([^\"'`]*)[\"'`]",
-            "class=\"([^\"]*)",
-            "class='([^']*)",
-            "\\[class\\]=\"([^\"]*)",
-            [
-              "template:\\s*`([\\s\\S]*?)`",
-              "class\\s*=\\s*[\"']([^\"']*)[\"']",
-            ],
+            "class=\"([^\"]*)\"",
+            "class='([^']*)'",
+            "\\[class\\]=\"([^\"]*)\"",
+            "\\[class\\]='([^']*)'",
+            "\\[ngClass\\]=\"([^\"]*)\"",
+            "\\[ngClass\\]='([^']*)'",
           ],
         },
       },
     },
+    "pyright": {
+      "settings": {},
+    },
   },
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "ruff"],
+      "language_servers": ["!ty", "!basedpyright", "pyright", "ruff", "..."],
       "format_on_save": "on",
       "formatter": [
         {
@@ -70,28 +104,171 @@
       ],
     },
     "HTML": {
-      "language_servers": ["tailwindcss-language-server", "Angular", "..."],
+      "language_servers": ["angular", "tailwindcss-language-server", "..."],
+      "format_on_save": "on",
+    },
+    "SCSS": {
+      "language_servers": ["!some-sass-lsp", "stylelint-lsp", "scss-lsp"],
     },
     "TypeScript": {
-      "language_servers": ["tailwindcss-language-server", "Angular", "..."],
+      "language_servers": [
+        "typescript-language-server",
+        "tailwindcss-language-server",
+        "angular",
+      ],
+      "formatter": [
+        {
+          "external": {
+            "command": "./node_modules/.bin/biome",
+            "arguments": [
+              "format",
+              "--write",
+              "--stdin-file-path={buffer_path}",
+            ],
+          },
+        },
+      ],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
     },
     "Angular": {
-      "language_servers": ["tailwindcss-language-server", "HTML", "..."],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
     },
   },
-  "theme": "Rosé Pine Dawn",
+  "theme": {
+    "mode": "light",
+    "light": "Catppuccin Latte (Blur)",
+    "dark": "Catppuccin Mocha (Blur)",
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
   },
-  "buffer_font_size": 14,
   "tab_size": 2,
   "base_keymap": "JetBrains",
-  "buffer_font_family": "Cascadia Code",
+  "buffer_font_family": "IBM Plex Mono",
+  "buffer_font_weight": 399,
+  // "ui_font_family": "IBM Plex Mono",
+  // "buffer_font_size": 14,
+  // "buffer_font_family": "Cascadia Code",
   "terminal": {
+    "flexible": true,
     "font_family": "MesloLGS NF",
     "font_fallbacks": ["MesloLGS NF"],
     "line_height": "standard",
-    "font_size": 13,
+    "font_size": 14,
   },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null, // same values as the `diagnostics_max_severity` from the editor settings
+    },
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "catppuccin-blur": true,
+    "catppuccin": true,
+    "dockerfile": true,
+    "emmet": true,
+    "scss": true,
+    "biome": true,
+    "docker-compose": true,
+    "pylsp": true,
+    "python-requirements": true,
+    "angular": true,
+    "stylelint": true,
+    "pytest-language-server": true,
+  },
+  // "experimental.theme_overrides": {
+  //   "background.appearance": "blurred",
+  //   // dark
+  //   // "background": "#111111d7",
+  //   // "status_bar.background": "#111111d7",
+  //   // "title_bar.background": "#111111d7",
+  //   // "elevated_surface.background": "#111111d7",
+  //   // "surface.background": "#111111d7",
+  //   // "editor.line_number": "#ffffff66",
+  //   //
+  //   // white
+  //   // "background": "#f9fafcba",
+  //   // "background": "#f9fafcbb",
+  //   "background": "#faf4ed88",
+  //   // "status_bar.background": "#f9fafcba",
+  //   "status_bar.background": "#faf4edba",
+  //   // "title_bar.background": "#f9fafcba",
+  //   "title_bar.background": "#faf4edba",
+  //   // "elevated_surface.background": "#f9fafc",
+  //   "elevated_surface.background": "#faf4ed",
+  //   "surface.background": "#0000000",
+  //   "editor.line_number": "#00000020",
+  //   "panel.overlay_background": "#00000000",
+  //   "panel.overlay_hover": "#00000000",
+  //   //
+  //   "border": "#90909000",
+  //   "hint.background": "#e8e8e8c0",
+  //   "editor.background": "#00000000",
+  //   "editor.active_line_number": "#0079ff90",
+  //   "editor.gutter.background": "#00000000",
+  //   "tab_bar.background": "#00000000",
+  //   "terminal.background": "#00000000",
+  //   "toolbar.background": "#00000000",
+  //   "tab.active_background": "#007aff0c",
+  //   "element.selected": "#007aff0c",
+  //   "tab.inactive_background": "#00000000",
+  //   "editor.indent_guide": "#007aff12",
+  //   "editor.indent_guide_active": "#007aff1a",
+  //   "panel.indent_guide": "#007aff12",
+  //   "panel.indent_guide_hover": "#007aff16",
+  //   "panel.indent_guide_active": "#007aff1a",
+  //   "panel.background": "#00000000",
+  //   "panel.focused_border": "#00000000",
+  //   "element.active": "#00000000",
+  //   "border.variant": "#00000000",
+  //   "scrollbar.track.border": "#00000000",
+  //   "editor.active_line.background": "#00000000",
+  //   "scrollbar.track.background": "#00000000",
+  //   "scrollbar.thumb.background": "#007aff0c",
+  //   "ghost_element.background": "#007aff00",
+  //   "element.hover": "#007aff08",
+  //   "ghost_element.hover": "#007aff08",
+  //   "ghost_element.active": "#007aff0c",
+  //   "ghost_element.selected": "#007aff12",
+  //   "drop_target.background": "#007aff12",
+  //   "editor.highlighted_line.background": "#007aff12",
+  //   //
+  //   "terminal.foreground": "#575279",
+  //   "terminal.bright_foreground": "#575279",
+  //   "terminal.dim_foreground": "#faf4ed",
+  //   "terminal.ansi.black": "#f4ede8",
+  //   "terminal.ansi.bright_black": "#797593",
+  //   "terminal.ansi.dim_black": "#575279",
+  //   "terminal.ansi.red": "#b4637a",
+  //   "terminal.ansi.bright_red": "#b4637a",
+  //   "terminal.ansi.dim_red": "#b4637a",
+  //   "terminal.ansi.green": "#286983",
+  //   "terminal.ansi.bright_green": "#286983",
+  //   "terminal.ansi.dim_green": "#286983",
+  //   "terminal.ansi.yellow": "#ea9d34",
+  //   "terminal.ansi.bright_yellow": "#ea9d34",
+  //   "terminal.ansi.dim_yellow": "#ea9d34",
+  //   "terminal.ansi.blue": "#56949f",
+  //   "terminal.ansi.bright_blue": "#56949f",
+  //   "terminal.ansi.dim_blue": "#56949f",
+  //   "terminal.ansi.magenta": "#907aa9",
+  //   "terminal.ansi.bright_magenta": "#907aa9",
+  //   "terminal.ansi.dim_magenta": "#907aa9",
+  //   "terminal.ansi.cyan": "#d7827e",
+  //   "terminal.ansi.bright_cyan": "#d7827e",
+  //   "terminal.ansi.dim_cyan": "#d7827e",
+  //   "terminal.ansi.white": "#575279",
+  //   "terminal.ansi.bright_white": "#575279",
+  //   "terminal.ansi.dim_white": "#575279",
+  // },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+  },
+  "hard_tabs": false,
 }
